@@ -19,9 +19,9 @@ const signUpClient = async (req, res) => {
       const client = await Client.create({
         firstName: firstNameClient, lastName: lastNameClient, email, password: hashPassword,
       });
-      req.session.clientEmail = client.email;
+      req.session.client = client.email;
       req.session.clientId = client.id;
-      req.session.clientName = `${client.firstNameClient} ${client.lastNameClient}`;
+      req.session.clientName = `${client.firstName} ${client.lastName}`;
       req.session.save(() => {
         res.redirect('/');
       });

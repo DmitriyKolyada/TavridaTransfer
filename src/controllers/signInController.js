@@ -18,8 +18,10 @@ const signInClient = async (req, res) => {
       const passwordCheck = await bcrypt.compare(password, client.password);
       if (passwordCheck) {
         req.session.client = client.email;
+        req.session.clientId = client.id;
+        req.session.clientName = `${client.firstName} ${client.lastName}`;
         req.session.save(() => {
-          res.redirect('/home');
+          res.redirect('/');
         });
       } else {
         res.send('Sorry, your password is wrong');

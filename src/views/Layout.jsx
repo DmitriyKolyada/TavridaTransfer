@@ -3,6 +3,7 @@ const React = require('react');
 function Layout({
   children, title, message, client,
 }) {
+  console.log('~ client Layout =========>>', client)
   return (
     <html lang="ru">
       <head>
@@ -62,12 +63,11 @@ function Layout({
                     <a className="nav-link mr-4" href="/logout">Выйти</a>
                   </li>
                   <li className="nav-item mr-4">
-                    <a className="nav-link mr-4" href="/myCard">my card</a>
+                    <a className="nav-link mr-4" href="/myCard">Мои трансферы</a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="/home">home</a>
+                    <a className="nav-link" href="/home">Home</a>
                   </li>
-
                 </ul>
               </div>
             ) : (

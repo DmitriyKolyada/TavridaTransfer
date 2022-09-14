@@ -1,11 +1,18 @@
 const React = require('react');
 const Layout = require('./Layout');
 
-function Home({ client }) {
+function Home({ clientName , client }) {
+  console.log('~ client', clientName);
+
   return (
     <Layout client={client}>
       <h2>Home page</h2>
-      <h2>Привет, </h2>
+      <h2>
+        Привет,
+        {' '}
+        {clientName}
+        {' '}
+      </h2>
 
     </Layout>
   );
