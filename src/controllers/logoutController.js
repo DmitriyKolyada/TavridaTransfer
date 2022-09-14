@@ -1,8 +1,8 @@
-const logoutUser = (req, res) => {
+const logoutClient = (req, res) => {
   try {
-    if (req.session.user) {
+    if (req.session.client) {
       req.session.destroy(() => {
-        res.clearCookie('userCookie');
+        res.clearCookie('clientCookie');
         res.redirect('/home');
       });
     } else {
@@ -13,4 +13,4 @@ const logoutUser = (req, res) => {
   }
 };
 
-module.exports = { logoutUser };
+module.exports = { logoutClient };

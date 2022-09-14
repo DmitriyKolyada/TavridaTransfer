@@ -3,48 +3,53 @@ const bcrypt = require('bcrypt');
 const renderTemplate = require('../lib/renderTemplate');
 const SignUp = require('../views/SignUp');
 
-const { User } = require('../../db/models');
+const { Client } = require('../../db/models');
 
 const renderRegistration = (req, res) => {
   renderTemplate(SignUp, null, res);
 };
 
-const signUpUser = async (req, res) => {
+const signUpClient = async (req, res) => {
   const {
-    userName, email, password, role,
+    firstNameClient, lastNameClient, email, password,
   } = req.body;
   try {
-    if (userName && email && password) {
+    if (firstNameClient && lastNameClient && email && password) {
       const hashPassword = await bcrypt.hash(password, 10);
-      const user = await User.create({
-        userName, email, password: hashPassword, role,
+      const client = await Client.create({
+        firstName: firstNameClient, lastName: lastNameClient, email, password: hashPassword,
       });
-      req.session.user = user.email;
+      req.session.client = client.email;
+      req.session.clientId = client.id;
+      req.session.clientName = `${client.firstName} ${client.lastName}`;
       req.session.save(() => {
-        res.redirect('/home');
+        res.redirect('/');
       });
-    } else if (!userName) {
-      res.send('Enter your name');
+    } else if (!firstNameClient) {
+      res.send('Введите Ваше имя');
       res.status(400);
-    } else if (!email) {
-      res.send('Enter your email');
+    } else if (!lastNameClient) {
+      res.send('Введите Вашу фамилию');
       res.status(400);
     } else if (!password) {
-      res.send('Enter your password');
+      res.send('Придумайте пароль');
+      res.status(400);
+    } else if (!email) {
+      res.send('Введите Ваш email');
       res.status(400);
     }
   } catch (error) {
-    const userRegisteredEarlier = await User.findOne({ where: { userName, email } });
-    const emailAlreadyInUse = await User.findOne({ where: { email } });
+    const clientRegisteredEarlier = await Client.findOne({ where: { firstNameClient, lastNameClient, email } });
+    const emailAlreadyInUse = await Client.findOne({ where: { email } });
 
-    if (userRegisteredEarlier) {
-      res.send('User is registered earlier, go to login');
+    if (clientRegisteredEarlier) {
+      res.send('Пользователь уже зарегистрирован ранее, перейдитe на авторизацию');
       res.status(401);
     } else if (emailAlreadyInUse) {
-      res.send('This email is already in use');
+      res.send('Данный Email уже используется');
       res.status(401);
     }
   }
 };
 
-module.exports = { renderRegistration, signUpUser };
+module.exports = { renderRegistration, signUpClient };
