@@ -4,12 +4,15 @@ const express = require('express');
 
 const logger = require('morgan');
 
+const session = require('express-session');
+const sessionConfig = require('./src/lib/sessionConfig');
+
 const app = express();
 
-const session = require('express-session');
-const FileStore = require('session-file-store')(session);
-
 app.use(logger('dev'));
+
+app.use(sessionConfig());
+app.use(session(sessionConfig));
 
 const checkConnectDb = require('./db/checkDbConnection');
 
