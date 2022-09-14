@@ -4,20 +4,20 @@ const renderTemplate = require('../lib/renderTemplate');
 
 const Login = require('../views/SignIn');
 
-const { User } = require('../../db/models');
+const { Client } = require('../../db/models');
 
 const renderLogin = (req, res) => {
   renderTemplate(Login, null, res);
 };
 
-const signInUser = async (req, res) => {
+const signInClient = async (req, res) => {
   const { email, password } = req.body;
   try {
-    const user = await User.findOne({ where: { email } });
-    if (user) {
-      const passwordCheck = await bcrypt.compare(password, user.password);
+    const client = await Client.findOne({ where: { email } });
+    if (client) {
+      const passwordCheck = await bcrypt.compare(password, client.password);
       if (passwordCheck) {
-        req.session.user = user.email;
+        req.session.client = client.email;
         req.session.save(() => {
           res.redirect('/home');
         });
@@ -25,11 +25,11 @@ const signInUser = async (req, res) => {
         res.send('Sorry, your password is wrong');
       }
     } else {
-      res.send('User with this name has not been found, you need to register');
+      res.send('client with this name has not been found, you need to register');
     }
   } catch (error) {
     console.error(error);
   }
 };
 
-module.exports = { renderLogin, signInUser };
+module.exports = { renderLogin, signInClient };
