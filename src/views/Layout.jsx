@@ -3,13 +3,14 @@ const React = require('react');
 function Layout({
   children, title, message, client,
 }) {
-  console.log('~ client Layout =========>>', client)
+  console.log('~ client Layout =========>>', client);
   return (
     <html lang="ru">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
+        {/* YndexMap */}
+        {/* <script src="https://api-maps.yandex.ru/2.1/?apikey=b6dc19ba-c18c-4730-bc85-491799e76f55&lang=ru_RU" /> */}
         {/* Bootstrap CSS */}
         <link
           rel="stylesheet"
@@ -18,7 +19,7 @@ function Layout({
           crossOrigin="anonymous"
         />
         {/* Bootstrap Scripts */}
-        <title>Hello, shop!</title>
+        <title>TavridaTransfer</title>
         <script
           defer
           src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -37,6 +38,7 @@ function Layout({
           integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
           crossOrigin="anonymous"
         />
+        <link rel="stylesheet" href="/style/index.css" />
         {/* User Scripts */}
         {/* <script defer src="..."></scrip */}
       </head>

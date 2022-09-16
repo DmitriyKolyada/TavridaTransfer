@@ -8,7 +8,7 @@ function SignIn() {
         <div className="row h-100 justify-content-center align-items-center">
           <div className="col-10 col-md-8 col-lg-6">
             {/* Form */}
-            <form className="signin-form" action="/signIn " method="post">
+            <form className="signin-form" action="/signIn" method="post">
               <div className="form-group mt-5">
                 <input type="email" name="email" className="form-control email" id="email" placeholder="email..." />
               </div>
@@ -20,6 +20,7 @@ function SignIn() {
                   id="password"
                   placeholder="password..."
                 />
+                <a href="/signUp" id="signInReg">Зарегистрироваться</a>
               </div>
               <div className="text-center mt-5">
                 <button type="submit" className="btn btn-secondary">&nbsp; Login &nbsp;</button>

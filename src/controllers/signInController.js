@@ -21,7 +21,7 @@ const signInClient = async (req, res) => {
         req.session.clientId = client.id;
         req.session.clientName = `${client.firstName} ${client.lastName}`;
         req.session.save(() => {
-          res.redirect('/');
+          res.redirect('/profile');
         });
       } else {
         res.send('Sorry, your password is wrong');
