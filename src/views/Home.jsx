@@ -7,12 +7,6 @@ function Home({ clientName , client }) {
   return (
     <Layout client={client}>
       <h2>Home page</h2>
-      <h2>
-        Привет,
-        {' '}
-        {clientName}
-        {' '}
-      </h2>
 
     </Layout>
   );

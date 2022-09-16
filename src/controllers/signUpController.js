@@ -17,13 +17,13 @@ const signUpClient = async (req, res) => {
     if (firstNameClient && lastNameClient && email && password) {
       const hashPassword = await bcrypt.hash(password, 10);
       const client = await Client.create({
-        firstName: firstNameClient, lastName: lastNameClient, email, password: hashPassword,
+        firstName: firstNameClient, lastName: lastNameClient, email, password: hashPassword, isAdmin: 'false',
       });
       req.session.client = client.email;
       req.session.clientId = client.id;
       req.session.clientName = `${client.firstName} ${client.lastName}`;
       req.session.save(() => {
-        res.redirect('/');
+        res.redirect('/profile');
       });
     } else if (!firstNameClient) {
       res.send('Введите Ваше имя');

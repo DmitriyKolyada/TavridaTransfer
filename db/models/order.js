@@ -19,8 +19,10 @@ module.exports = (sequelize, DataTypes) => {
     transferTime: DataTypes.TIME,
     transferClass: DataTypes.STRING,
     commentOnOrder: DataTypes.TEXT,
+    departurePoint: DataTypes.STRING,
+    arrivalPoint: DataTypes.STRING,
     distance: DataTypes.INTEGER,
-    travelTime: DataTypes.TIME,
+    travelTime: DataTypes.STRING,
     costOfTheTransfer: DataTypes.INTEGER,
     clientId: DataTypes.INTEGER,
   }, {

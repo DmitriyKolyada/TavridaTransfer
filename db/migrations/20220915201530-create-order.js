@@ -19,11 +19,17 @@ module.exports = {
       commentOnOrder: {
         type: Sequelize.TEXT,
       },
+      departurePoint: {
+        type: Sequelize.STRING,
+      },
+      arrivalPoint: {
+        type: Sequelize.STRING,
+      },
       distance: {
         type: Sequelize.INTEGER,
       },
       travelTime: {
-        type: Sequelize.TIME,
+        type: Sequelize.STRING,
       },
       costOfTheTransfer: {
         type: Sequelize.INTEGER,
